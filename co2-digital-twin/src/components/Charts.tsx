@@ -151,7 +151,7 @@ export const CityEmissionsBarChart: React.FC<CityEmissionsBarChartProps> = ({
     },
     plot_bgcolor: 'rgba(0,0,0,0)',
     paper_bgcolor: 'rgba(0,0,0,0)',
-    font: { color: '#6b7280' },
+    font: { color: '#002a7eff' },
     margin: { l: 60, r: 40, t: 60, b: 100 }
   };
 
