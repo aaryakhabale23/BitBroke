@@ -1,12 +1,12 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
 import { KpiCards } from '@/components/KpiCards';
-import { EmissionsChart, CityEmissionsBarChart, EmissionsSavingsChart } from '@/components/Charts';
+import { CityEmissionsBarChart, EmissionsSavingsChart } from '@/components/Charts';
 import { Interventions } from '@/components/Interventions';
 import { ProfilePanel } from '@/components/ProfilePanel';
-import { mockCities, mockTimeSeriesData, getTotalEmissions, getTotalSaved, getAverageChange } from '@/data/mockData';
+import { mockCities, getTotalEmissions, getTotalSaved, getAverageChange } from '@/data/mockData';
 import { CityData } from '@/types/dashboard';
 import { User, BarChart3, Globe } from 'lucide-react';
 
@@ -25,10 +25,12 @@ export default function Dashboard() {
   const [selectedCity, setSelectedCity] = useState<CityData | null>(mockCities[0]);
   const [mapCenter, setMapCenter] = useState<[number, number]>([mockCities[0].coordinates.lat, mockCities[0].coordinates.lng]);
   const [mapZoom, setMapZoom] = useState(10);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [coordinatesDisplay, setCoordinatesDisplay] = useState<{ lat: number; lng: number } | null>(null);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   // Start with some preset interventions for the default city to show functionality
-  const [selectedInterventions, setSelectedInterventions] = useState<any[]>([
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [selectedInterventions, setSelectedInterventions] = useState<{ id: string; name: string; description: string; estimatedReductionMin: number; estimatedReductionMax: number }[]>([
     {
       id: 'ev-infrastructure',
       name: 'Electric Vehicle Infrastructure',
@@ -56,13 +58,7 @@ export default function Dashboard() {
     setMapZoom(10);
   };
 
-  const handleCoordinatesDisplay = (lat: number, lng: number) => {
-    setCoordinatesDisplay({ lat, lng });
-    setMapCenter([lat, lng]);
-    setMapZoom(8);
-  };
-
-  const handleAddIntervention = (intervention: any) => {
+  const handleAddIntervention = (intervention: { id: string; name: string; description: string; estimatedReductionMin: number; estimatedReductionMax: number }) => {
     setSelectedInterventions(prev => [...prev, intervention]);
   };
 

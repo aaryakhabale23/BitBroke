@@ -44,7 +44,7 @@ const City3DMarker: React.FC<City3DMarkerProps> = ({ city, onCitySelect, isSelec
     scale *= 1.5;
   }
 
-  useFrame((state) => {
+  useFrame(() => {
     if (meshRef.current && (hovered || isSelected)) {
       meshRef.current.rotation.y += 0.02;
     }

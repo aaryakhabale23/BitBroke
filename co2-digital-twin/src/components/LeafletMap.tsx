@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { CityData } from '@/types/dashboard';
 import { TypeaheadSearch } from '@/components/TypeaheadSearch';
@@ -17,6 +17,7 @@ interface LeafletMapProps {
   onCitySelect: (city: CityData) => void;
   center: [number, number];
   zoom: number;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onMapReady?: (map: any) => void;
 }
 
@@ -29,6 +30,7 @@ export const LeafletMap: React.FC<LeafletMapProps> = ({
   onMapReady
 }) => {
   const [isClient, setIsClient] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [mapInstance, setMapInstance] = useState<any>(null);
 
   useEffect(() => {
@@ -64,6 +66,7 @@ export const LeafletMap: React.FC<LeafletMapProps> = ({
 
   // Custom marker component that handles the dynamic import of Leaflet
   const CustomMarker = ({ city }: { city: CityData }) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [L, setL] = useState<any>(null);
 
     useEffect(() => {
@@ -197,6 +200,7 @@ export const LeafletMap: React.FC<LeafletMapProps> = ({
           zoom={zoom}
           style={{ height: '100%', width: '100%' }}
           zoomControl={false}
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           ref={(mapRef: any) => {
             if (mapRef) {
               setMapInstance(mapRef);

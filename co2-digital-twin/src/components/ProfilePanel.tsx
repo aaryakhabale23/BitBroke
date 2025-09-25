@@ -78,7 +78,7 @@ export const ProfilePanel: React.FC<ProfilePanelProps> = ({ isOpen, onClose }) =
 
       <div className="mt-6 text-center">
         <a href="#" className="text-green-600 text-sm hover:underline">
-          Don't have an account? Sign up
+          Don&apos;t have an account? Sign up
         </a>
       </div>
     </div>

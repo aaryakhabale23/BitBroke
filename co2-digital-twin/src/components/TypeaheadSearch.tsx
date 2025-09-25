@@ -22,14 +22,14 @@ export const TypeaheadSearch: React.FC<TypeaheadSearchProps> = ({
   const inputRef = useRef<HTMLInputElement>(null);
 
   // Configure Fuse.js for fuzzy searching
-  const fuse = new Fuse(cities, {
-    keys: ['name', 'country'],
-    threshold: 0.3,
-    includeScore: true,
-    minMatchCharLength: 1
-  });
-
   useEffect(() => {
+    const fuse = new Fuse(cities, {
+      keys: ['name', 'country'],
+      threshold: 0.3,
+      includeScore: true,
+      minMatchCharLength: 1
+    });
+
     if (query.length > 0) {
       const results = fuse.search(query).slice(0, 6);
       const mappedResults: SearchSuggestion[] = results.map(result => ({
@@ -43,7 +43,7 @@ export const TypeaheadSearch: React.FC<TypeaheadSearchProps> = ({
       setSuggestions([]);
       setIsOpen(false);
     }
-  }, [query]);
+  }, [query, cities]);
 
   // Close suggestions when clicking outside
   useEffect(() => {
@@ -176,7 +176,7 @@ export const TypeaheadSearch: React.FC<TypeaheadSearchProps> = ({
         <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-xl border border-gray-200 z-50">
           <div className="p-4 text-center text-gray-500">
             <Search className="w-8 h-8 mx-auto mb-2 text-gray-300" />
-            <p>No cities found matching "{query}"</p>
+            <p>No cities found matching &quot;{query}&quot;</p>
           </div>
         </div>
       )}
